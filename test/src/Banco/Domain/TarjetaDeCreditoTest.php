@@ -74,4 +74,25 @@ class TarjetaDeCreditoTest extends  TestCase
       }
 
 
+      /*
+       *
+        Escenario:  Valor del avance menor o igual a cero.
+        HU 6. Como Usuario quiero realizar retiros (avances) a una cuenta de crédito para retirar dinero en forma de avances del servicio de crédito.
+        Criterio de Aceptación:
+         6.1 El valor del avance debe ser mayor a 0
+        Dado
+        El cliente tiene una tarjeta de crédito Número 4508-0356-0456-0125
+        , Nombre “Cuenta Ejemplo”,Ciudad Valledupar Saldo de $200000, cupo preaprobado $2,000,000.00
+        Cuando
+        va retirar $0
+        Entonces
+        El sistema presentará el mensaje. “El valor del avance es incorrecto”
+       */
+       public function testValorDelAvanceMenorOIgualACero(){
+           $tarjeta = new TarjetaDeCredito('4508-0356-0456-0125','Cuenta Ejemplo','Valledupar',200000,2000000);
+           $resultado = $tarjeta->consignar(200000,'Valledupar');
+           $this->assertEquals('Su Nuevo Saldo es de $0.00 pesos m/c y el cupo esta por $2,000,000.00',$resultado);
+       }
+
+
 }

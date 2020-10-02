@@ -21,12 +21,13 @@ class TarjetaDeCredito extends Credenciales implements IServicioFinanciero
 
        $this->setSaldo($this->getSaldo()-$valorConsignacion);
 
-       return sprintf('Su Nuevo Saldo es de $%s pesos m/c y el cupo esta por $%s',number_format($this->getSaldo(),2),number_format($this->cupoPreAprobado,2));
+       return sprintf('Su Nuevo Saldo es de $%s pesos m/c y el cupo esta por $%s',number_format($this->getSaldo(),2),number_format($this->cupoPreAprobado-$this->getSaldo(),2));
 
     }
 
-    public function retirar(float $valorConsignacion, \DateTime $fechaDeLaTransaccion): string
+    public function retirar(float $valorDelAvance, \DateTime $fechaDeLaTransaccion): string
     {
-        // TODO: Implement retirar() method.
+        if($valorDelAvance <= 0)
+            return 'El valor del avance es incorrecto';
     }
 }
