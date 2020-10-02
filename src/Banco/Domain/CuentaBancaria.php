@@ -8,10 +8,7 @@ class CuentaBancaria extends Credenciales implements IServicioFinanciero {
     protected $movimientos = [];
 
     //CONSTANTES
-    protected $SALDOMINIMOPARARETIRAR;
     protected $VALORMINIMODECONSIGNACIONINICIAL;
-    protected $CANTIDADDERETIROSGRATUITOSPORMES;
-    protected $VALORDELRETIRO;
 
 
     public function __construct(string $numero,string $nombre, string $ciudad, float $saldo)

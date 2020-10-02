@@ -35,14 +35,18 @@ class CuentaCorriente extends CuentaBancaria {
     {
         $cantidadRestante = $this->getSaldo() - $valorRetiro - $valorRetiro/250;
 
-        if($cantidadRestante < $this->cupoSobreGiro)
+        if($cantidadRestante + $this->cupoSobreGiro < 0)
             return "cupo de sobregiro superado, Retiro cancelado";
 
         $this->addMovimiento($this->getSaldo(),0,$valorRetiro,'RETIRO',$fechaDeLaTransaccion);
         $this->setSaldo($cantidadRestante);
 
-        return sprintf('Su nuevo saldo es de $%s pesos m/c',number_format($this->getSaldo(),2));
+        return sprintf('Su nuevo saldo es de $%s pesos m/c y el cupo restante es de $%s',number_format($this->getSaldo(),2),number_format($this->getCupoSobreGireo(),2));
 
+    }
+
+    private function getCupoSobreGireo(){
+        return $this->getSaldo() < 0 ? $this->cupoSobreGiro + $this->getSaldo() : $this->cupoSobreGiro;
     }
 
 }

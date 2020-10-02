@@ -26,7 +26,7 @@ class CuentaCorrienteRetiroTest extends TestCase
 
     public function testRetiroIncorrecto() : void {
         $cuentaCorriente = new CuentaCorriente('1001','Cuenta Ejemplo','Valledupar',50000,40000);
-        $resultado = $cuentaCorriente->retirar(50000,new \DateTime('NOW'));
+        $resultado = $cuentaCorriente->retirar(90000,new \DateTime('NOW'));
         $this->assertEquals('cupo de sobregiro superado, Retiro cancelado',$resultado);
     }
 
@@ -40,18 +40,18 @@ class CuentaCorrienteRetiroTest extends TestCase
         4.2 El saldo mínimo deberá ser mayor o igual al cupo de sobregiro.
         4.3 El retiro tendrá un costo del 4×Mil
         Dado
-        El cliente tiene una cuenta corriente Numero 1001, Nombre “Cuenta Ejemplo”,Ciudad Valledupar Saldo de $80000, cupodesobregiro $40000
+        El cliente tiene una cuenta corriente Numero 1001, Nombre “Cuenta Ejemplo”,Ciudad Valledupar Saldo de $50000, cupodesobregiro $40000
         Cuando
-        va a retirar 30000 mil pesos
+        va a retirar 50000 mil pesos
         Entonces
-        El sistema descontara los 30000 mil de la cuenta AND
-        El sistema presentará el mensaje. “Su nuevo saldo es de $49,880.00 pesos m/c”
+        El sistema descontara  $50.200 de la cuenta AND
+        El sistema presentará el mensaje. “Su nuevo saldo es de -$2,00.00 pesos m/c y el cupo restante es de $39,800.00”
      */
 
     public function testRetiroCorrecto() : void {
-        $cuentaCorriente = new CuentaCorriente('1001','Cuenta Ejemplo','Valledupar',80000,40000);
-        $resultado = $cuentaCorriente->retirar(30000,new \DateTime('NOW'));
-        $this->assertEquals('Su nuevo saldo es de $49,880.00 pesos m/c',$resultado);
+        $cuentaCorriente = new CuentaCorriente('1001','Cuenta Ejemplo','Valledupar',50000,40000);
+        $resultado = $cuentaCorriente->retirar(50000,new \DateTime('NOW'));
+        $this->assertEquals('Su nuevo saldo es de $-200.00 pesos m/c y el cupo restante es de $39,800.00',$resultado);
     }
 
 }

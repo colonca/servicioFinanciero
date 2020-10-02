@@ -9,16 +9,17 @@ use phpDocumentor\Reflection\Types\Boolean;
 class CuentaAhorros extends CuentaBancaria {
 
     private $retiros = [];
+
+    //constantes
+    private $SALDOMINIMOPARARETIRAR = 20000;
+    private $CANTIDADDERETIROSGRATUITOSPORMES = 3;
+    private $VALORDELRETIRO = 5000;
     private $VALORDELACONSIGNACIONDESDEUNACUENTADEOTRACIUDAD = 10000;
 
     public function __construct(string $numero,string $nombre, string $ciudad, float $saldo)
     {
         parent::__construct($numero,$nombre, $ciudad, $saldo);
-        $this->SALDOMINIMOPARARETIRAR = 20000;
-        $this->SALDOMINIMOPARARETIRAR = 20000;
         $this->VALORMINIMODECONSIGNACIONINICIAL = 50000;
-        $this->CANTIDADDERETIROSGRATUITOSPORMES = 3;
-        $this->VALORDELRETIRO = 5000;
     }
 
     protected function addMovimiento(float $saldoAnterior, float $valorCredito, float $valorDebito, string $tipo,\DateTime $fechaDeLaTransaccion) : void {
