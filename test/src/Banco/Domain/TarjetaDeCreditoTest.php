@@ -90,9 +90,31 @@ class TarjetaDeCreditoTest extends  TestCase
        */
        public function testValorDelAvanceMenorOIgualACero(){
            $tarjeta = new TarjetaDeCredito('4508-0356-0456-0125','Cuenta Ejemplo','Valledupar',200000,2000000);
-           $resultado = $tarjeta->consignar(200000,'Valledupar');
-           $this->assertEquals('Su Nuevo Saldo es de $0.00 pesos m/c y el cupo esta por $2,000,000.00',$resultado);
+           $resultado = $tarjeta->retirar(0,new \DateTime('NOW'));
+           $this->assertEquals('El valor del avance es incorrecto',$resultado);
        }
 
 
+       /*
+        *
+        Escenario:  avance mayor al valor disponible del cupo
+        HU 6. Como Usuario quiero realizar retiros (avances) a una cuenta de crédito para retirar dinero en forma de avances del servicio de crédito.
+        Criterio de Aceptación:
+        6.1 El valor del avance debe ser mayor a 0.
+        6.2 Al realizar un avance se debe reducir el valor disponible del cupo con el valor del avance.
+        6.3 Un avance no podrá ser mayor al valor disponible del cupo.
+        Dado
+        El cliente tiene una tarjeta de crédito Número 4508-0356-0456-0125
+        , Nombre “Cuenta Ejemplo”,Ciudad Valledupar Saldo de $0, cupo preaprobado $2,000,000.00
+        Cuando
+        va retirar $2,200,000
+        Entonces
+        El sistema presentará el mensaje. “El cupo disponible de la tarjeta se ha copado”
+        */
+
+        public function testAvanceMayorAlValorDisponibleDelCupo(): void {
+            $tarjeta = new TarjetaDeCredito('4508-0356-0456-0125','Cuenta Ejemplo','Valledupar',0,2000000);
+            $resultado = $tarjeta->retirar(2200000,new \DateTime('NOW'));
+            $this->assertEquals('El cupo disponible de la tarjeta se ha copado',$resultado);
+        }
 }
