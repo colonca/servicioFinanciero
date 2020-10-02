@@ -10,7 +10,7 @@ class CuentaCorrienteRetiroTest extends TestCase
 
     /*
      *
-        Escenario:  retiro incorrecto
+        Escenario:  cupo de sobregiro superado
         HU 4. Como Usuario quiero realizar retiros a una cuenta corriente para salvaguardar el dinero
         Criterio de Aceptación:
         4.1 El valor a retirar se debe descontar del saldo de la cuenta.
@@ -24,7 +24,7 @@ class CuentaCorrienteRetiroTest extends TestCase
         El sistema presentará el mensaje. “cupo de sobregiro superado, Retiro cancelado”
      */
 
-    public function testRetiroIncorrecto() : void {
+    public function testCupoDeSobregiroSuperado() : void {
         $cuentaCorriente = new CuentaCorriente('1001','Cuenta Ejemplo','Valledupar',50000,40000);
         $resultado = $cuentaCorriente->retirar(90000,new \DateTime('NOW'));
         $this->assertEquals('cupo de sobregiro superado, Retiro cancelado',$resultado);
