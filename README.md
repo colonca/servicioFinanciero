@@ -1,4 +1,4 @@
-#Taller de Diseño Dirigido por Pruebas
+:cowboy_hat_face: Taller de Diseño Dirigido por Pruebas
 
 Una entidad Financiera requiere un software que permita la gestión de los siguientes servicios
 financieros: **Cuenta de Ahorro**, Cuenta Corriente, **Tarjeta de Crédito**, CDT, FiduRentas y
