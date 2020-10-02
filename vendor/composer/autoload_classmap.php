@@ -1034,6 +1034,9 @@ return array(
     'src\\Banco\\Domain\\CuentaBancaria' => $baseDir . '/src/Banco/Domain/CuentaBancaria.php',
     'src\\Banco\\Domain\\CuentaBancariaMovimiento' => $baseDir . '/src/Banco/Domain/CuentaBancariaMovimiento.php',
     'src\\Banco\\Domain\\CuentaCorriente' => $baseDir . '/src/Banco/Domain/CuentaCorriente.php',
+    'src\\Banco\\Domain\\IServicioFinanciero' => $baseDir . '/src/Banco/Domain/IServicioFinanciero.php',
     'test\\src\\Banco\\Domain\\CuentaAhorrosConsignacionesTest' => $baseDir . '/test/src/Banco/Domain/CuentaAhorrosConsignacionesTest.php',
+    'test\\src\\Banco\\Domain\\CuentaAhorrosRetiroTest' => $baseDir . '/test/src/Banco/Domain/CuentaCorrienteRetiroTest.php',
     'test\\src\\Banco\\Domain\\CuentaAhorrosRetirosTest' => $baseDir . '/test/src/Banco/Domain/CuentaAhorrosRetirosTest.php',
+    'test\\src\\Banco\\Domain\\CuentaCorreinteConsignacionTest' => $baseDir . '/test/src/Banco/Domain/CuentaCorreinteConsignacionTest.php',
 );

@@ -1115,8 +1115,11 @@ class ComposerStaticInit8bfbbc8196dca624666fe7b7c66df9d8
         'src\\Banco\\Domain\\CuentaBancaria' => __DIR__ . '/../..' . '/src/Banco/Domain/CuentaBancaria.php',
         'src\\Banco\\Domain\\CuentaBancariaMovimiento' => __DIR__ . '/../..' . '/src/Banco/Domain/CuentaBancariaMovimiento.php',
         'src\\Banco\\Domain\\CuentaCorriente' => __DIR__ . '/../..' . '/src/Banco/Domain/CuentaCorriente.php',
+        'src\\Banco\\Domain\\IServicioFinanciero' => __DIR__ . '/../..' . '/src/Banco/Domain/IServicioFinanciero.php',
         'test\\src\\Banco\\Domain\\CuentaAhorrosConsignacionesTest' => __DIR__ . '/../..' . '/test/src/Banco/Domain/CuentaAhorrosConsignacionesTest.php',
+        'test\\src\\Banco\\Domain\\CuentaAhorrosRetiroTest' => __DIR__ . '/../..' . '/test/src/Banco/Domain/CuentaCorrienteRetiroTest.php',
         'test\\src\\Banco\\Domain\\CuentaAhorrosRetirosTest' => __DIR__ . '/../..' . '/test/src/Banco/Domain/CuentaAhorrosRetirosTest.php',
+        'test\\src\\Banco\\Domain\\CuentaCorreinteConsignacionTest' => __DIR__ . '/../..' . '/test/src/Banco/Domain/CuentaCorreinteConsignacionTest.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

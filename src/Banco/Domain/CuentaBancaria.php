@@ -2,7 +2,7 @@
 
 namespace src\Banco\Domain;
 
-abstract class CuentaBancaria {
+class CuentaBancaria extends Credenciales implements IServicioFinanciero {
 
     //COLLECCIONES
     protected $movimientos = [];
@@ -13,33 +13,12 @@ abstract class CuentaBancaria {
     protected $CANTIDADDERETIROSGRATUITOSPORMES;
     protected $VALORDELRETIRO;
 
-    private $numero;
-    private $ciudad;
-    private $saldo;
 
     public function __construct(string $numero,string $nombre, string $ciudad, float $saldo)
     {
-        $this->numero = $numero;
-        $this->nombre = $nombre;
-        $this->ciudad = $ciudad;
-        $this->saldo = $saldo;
+       parent::__construct( $numero, $nombre,  $ciudad,  $saldo);
     }
 
-    public function getCiudad(): string
-    {
-        return $this->ciudad;
-    }
-    public function getNumero(): string
-    {
-        return $this->numero;
-    }
-    public function getSaldo(): float
-    {
-        return $this->saldo;
-    }
-    public function setSaldo(float $saldo){
-        $this->saldo = $saldo;
-    }
 
     protected function addMovimiento(float $saldoAnterior, float $valorCredito, float $valorDebito, string $tipo,\DateTime $fechaDeLaTransaccion) : void {
         $movimiento = new CuentaBancariaMovimiento($saldoAnterior,$valorCredito,$valorDebito,$tipo,$fechaDeLaTransaccion);
@@ -50,7 +29,6 @@ abstract class CuentaBancaria {
         return count($this->movimientos) !== 0 || $this->getSaldo() != 0;
     }
 
-    abstract function  consignar(float $valorConsignacion): string;
-    abstract function  retirar(float $valorConsignacion, \DateTime $fechaDeLaTransaccion): string;
-
+    function consignar(float $valorConsignacion,string $ciudad): string{}
+    function retirar(float $valorConsignacion, \DateTime $fechaDeLaTransaccion): string{}
 }

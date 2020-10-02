@@ -9,6 +9,7 @@ use phpDocumentor\Reflection\Types\Boolean;
 class CuentaAhorros extends CuentaBancaria {
 
     private $retiros = [];
+    private $VALORDELACONSIGNACIONDESDEUNACUENTADEOTRACIUDAD = 10000;
 
     public function __construct(string $numero,string $nombre, string $ciudad, float $saldo)
     {
@@ -28,15 +29,20 @@ class CuentaAhorros extends CuentaBancaria {
         }
     }
 
-    public function consignar(float $valorConsignacion): string
+    public function consignar(float $valorConsignacion,string $ciudadDondeSeRealizoLaConsignacion): string
     {
         if($valorConsignacion <= 0) return 'El valor a consignar es incorrecto';
 
         if($valorConsignacion < $this->VALORMINIMODECONSIGNACIONINICIAL && !$this->tieneConsignaciones())
-            return 'El valor mínimo de la primera consignación debe ser de $50,000 mil pesos. Su nuevo saldo es $0 pesos';
+            return sprintf('El valor mínimo de la primera consignación debe ser de $%s mil pesos. Su nuevo saldo es $%s pesos',number_format($this->VALORMINIMODECONSIGNACIONINICIAL),number_format($this->getSaldo()));
 
-        $this->addMovimiento($this->getSaldo(),$valorConsignacion,0,'CONSIGNACION',new \DateTime('NOW'));
-        $this->setSaldo($this->getSaldo()+$valorConsignacion);
+        if($ciudadDondeSeRealizoLaConsignacion !== $this->getCiudad() && ($valorConsignacion+$this->getSaldo()) < $this->VALORDELACONSIGNACIONDESDEUNACUENTADEOTRACIUDAD)
+            return 'Saldo insuficienta para realizar la consignacion';
+
+        $cobroPorConsignacionNacional = $ciudadDondeSeRealizoLaConsignacion !== $this->getCiudad() ? $this->VALORDELACONSIGNACIONDESDEUNACUENTADEOTRACIUDAD : 0;
+        $valorAConsignar  = $valorConsignacion-$cobroPorConsignacionNacional;
+        $this->addMovimiento($this->getSaldo(),$valorAConsignar,0,'CONSIGNACION',new \DateTime('NOW'));
+        $this->setSaldo($this->getSaldo()+$valorAConsignar);
 
         return  sprintf('Su Nuevo Saldo es de $%s pesos m/c',number_format($this->getSaldo(),2));
     }

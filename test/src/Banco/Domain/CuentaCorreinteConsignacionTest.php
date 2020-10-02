@@ -21,8 +21,8 @@ class CuentaCorreinteConsignacionTest extends TestCase {
         El sistema debe arrojar un mensaje : "El valor a consignar es incorrecto"
      */
     public function testConsignacionIncorrecta(){
-        $cuentaCorriente = new CuentaCorriente('10001','Cuenta Ejemplo','Valledupar',0.00);
-        $resultado = $cuentaCorriente->consignar(0);
+        $cuentaCorriente = new CuentaCorriente('10001','Cuenta Ejemplo','Valledupar',0.00,0);
+        $resultado = $cuentaCorriente->consignar(0,'Valledupar');
         $this->assertEquals('El valor a consignar es incorrecto',$resultado);
     }
 
@@ -42,8 +42,8 @@ class CuentaCorreinteConsignacionTest extends TestCase {
      */
     public function testConsignacionCorrecta()
     {
-        $cuentaCorriente = new CuentaCorriente('10001','Cuenta Ejemplo','Valledupar',0.00);
-        $resultado = $cuentaCorriente->consignar(100000);
+        $cuentaCorriente = new CuentaCorriente('10001','Cuenta Ejemplo','Valledupar',0.00,0);
+        $resultado = $cuentaCorriente->consignar(100000,'Valledupar');
         $this->assertEquals('Su nuevo saldo es de $100,000.00 pesos m/c',$resultado);
     }
 
@@ -60,8 +60,8 @@ class CuentaCorreinteConsignacionTest extends TestCase {
             de $50.000 mil pesos. Su nuevo saldo es $0 pesos”.
      */
     public function testConsignacionInicialIncorrecta() : void {
-        $cuentaAhorro = new CuentaCorriente('1001','Cuenta de Ejemplo','Valledupar',0);
-        $resultado = $cuentaAhorro->consignar(99950);
+        $cuentaAhorro = new CuentaCorriente('1001','Cuenta de Ejemplo','Valledupar',0,0);
+        $resultado = $cuentaAhorro->consignar(99950,'Valledupar');
         $this->assertEquals('El valor mínimo de la primera consignación debe ser de $100,000.00 mil pesos. Su nuevo saldo es $0 pesos',$resultado);
     }
 
@@ -76,9 +76,11 @@ class CuentaCorreinteConsignacionTest extends TestCase {
      AND presentará el mensaje. “Su Nuevo Saldo es de $79.950,00 pesos m/c”.
   */
     public function testConsignacionPosteriorAlaInicialCorrecta() {
-        $cuentaAhorro = new CuentaCorriente('10001','Cuenta de Ejemplo','Valledupar',80000);
-        $resultado = $cuentaAhorro->consignar(99950);
+        $cuentaAhorro = new CuentaCorriente('10001','Cuenta de Ejemplo','Valledupar',80000,0);
+        $resultado = $cuentaAhorro->consignar(99950,'Valledupar');
         $this->assertEquals('Su nuevo saldo es de $179,950.00 pesos m/c',$resultado);
     }
+
+
 
 }
