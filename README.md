@@ -5,7 +5,3 @@ financieros: **Cuenta de Ahorro**, Cuenta Corriente, **Tarjeta de Crédito**, CD
 FiduCuentas, Créditos de Vivienda, Crédito de Vehículos, Créditos de Libre Inversión. En cada una
 de estos servicios financieros se realizan consignaciones, retiros y traslados de dinero de acuerdo a
 las reglas de negocio de cada servicio. 
-
-Condiciones Generales en cada operación bancaria: 
-
->Todos los movimientos deben quedar registrados en un histórico de movimiento

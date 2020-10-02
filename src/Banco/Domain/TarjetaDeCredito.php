@@ -15,7 +15,8 @@ class TarjetaDeCredito extends Credenciales implements IServicioFinanciero
 
     public function consignar(float $valorConsignacion, string $ciudadDondeSeRealizoLaConsignacion): string
     {
-        // TODO: Implement consignar() method.
+       if($valorConsignacion <= 0 || $valorConsignacion > $this->getSaldo())
+           return 'El valor del abono es incorrecto';
     }
 
     public function retirar(float $valorConsignacion, \DateTime $fechaDeLaTransaccion): string
