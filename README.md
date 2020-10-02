@@ -1,4 +1,4 @@
-##Taller de Diseño Dirigido por Pruebas
+#Taller de Diseño Dirigido por Pruebas
 
 Una entidad Financiera requiere un software que permita la gestión de los siguientes servicios
 financieros: **Cuenta de Ahorro**, Cuenta Corriente, **Tarjeta de Crédito**, CDT, FiduRentas y
@@ -8,4 +8,4 @@ las reglas de negocio de cada servicio.
 
 Condiciones Generales en cada operación bancaria: 
 
->Todos los movimientos deben quedar registrados en un histórico de movimiento
+[] Todos los movimientos deben quedar registrados en un histórico de movimiento
