@@ -52,4 +52,26 @@ class TarjetaDeCreditoTest extends  TestCase
          $this->assertEquals('El valor del abono es incorrecto',$resultado);
      }
 
+     /*
+      *
+        Escenario:  Valor del abono correcto
+        HU 5. Como Usuario quiero realizar consignaciones (abonos) a una Tarjeta Crédito para abonar al saldo del servicio.
+        Criterio de Aceptación:
+         5.1 El valor a abonar no puede ser menor o igual a 0.
+         5.2 El abono podrá ser máximo el valor del saldo de la tarjeta de crédito.
+        Dado
+        El cliente tiene una tarjeta de crédito Número 4508-0356-0456-0125
+        , Nombre “Cuenta Ejemplo”,Ciudad Valledupar Saldo de $200000, cupo preaprobado $2,000,000.00
+        Cuando
+        va abonar $200000
+        Entonces
+        El sistema presentará el mensaje. “Su Nuevo Saldo es de $0.00 pesos m/c y el cupo está por %2,000,000.00”
+      */
+      public function testValorDelAbonoCorrecto(): void {
+          $tarjeta = new TarjetaDeCredito('4508-0356-0456-0125','Cuenta Ejemplo','Valledupar',200000,2000000);
+          $resultado = $tarjeta->consignar(200000,'Valledupar');
+          $this->assertEquals('Su Nuevo Saldo es de $0.00 pesos m/c y el cupo esta por $2,000,000.00',$resultado);
+      }
+
+
 }

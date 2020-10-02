@@ -82,23 +82,5 @@ class CuentaAhorrosConsignacionesTest extends TestCase {
     }
 
 
-    /*
-    * Escenario: Consignación posterior a la inicial correcta
-       HU: Como Usuario quiero realizar consignaciones a una cuenta de ahorro para salvaguardar el
-       dinero.
-       Criterio de Aceptación:
-       1.4 La consignación nacional (a una cuenta de otra ciudad) tendrá un costo de $10 mil pesos.
-       Dado El cliente tiene una cuenta de ahorro con un saldo de 30.000 perteneciente a una
-       sucursal de la ciudad de Bogotá y se realizará una consignación desde una sucursal
-       de la Valledupar.
-       Cuando Va a consignar el valor inicial de $49.950 pesos.
-       Entonces El sistema registrará la consignación restando el valor a consignar los 10 mil pesos.
-       AND presentará el mensaje. “Su Nuevo Saldo es de $69,950.00 pesos m/c”.
-    */
-    public function testConsignaciónPosteriorA_laInicialCorrecta() : void {
-        $cuentaAhorros = new CuentaAhorros('10001','Cuenta Ejemplo','Bogota',30000);
-        $resultado = $cuentaAhorros->consignar(49950,'Valledupar');
-        $this->assertEquals('Su Nuevo Saldo es de $69,950.00 pesos m/c',$resultado);
-    }
 
 }
